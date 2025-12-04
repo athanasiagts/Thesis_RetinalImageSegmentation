@@ -1,0 +1,53 @@
+[data paths]
+path_local =  ../../data/DRIVE_training_testing/
+train_imgs_original = init_img_train.hdf5
+train_groundTruth = init_gtruth_train.hdf5
+train_border_masks = init_masks_train.hdf5
+test_imgs_original = init_img_test.hdf5
+test_groundTruth = init_gtruth_test.hdf5
+test_border_masks = init_masks_test.hdf5
+
+
+[experiment name]
+name = plain_class_weights2_ensemble
+
+
+[data attributes]
+# Dimensions of the patches extracted from the full images
+patch_height = 27
+patch_width = 27
+
+
+[training settings]
+# number of total patches:
+N_subimgs = 100000
+# if patches are extracted only inside the field of view:
+inside_FOV = True
+# if Structured Prediction is chosen
+SP = False
+# Number of training epochs
+N_epochs = 2
+batch_size = 64
+# if running with nohup: the standard output during the training is redirected and saved in a log file
+nohup = True
+
+
+[testing settings]
+# Choose the model to test: [best==epoch with min loss], [last==last epoch]
+best_last = best
+# number of full image for the test (max 20)
+images2test = 3  
+# How many original-groundTruth-prediction images are visualized in each image
+N_group_visual = 1
+# ----------------------------------------------------------------------------
+# OROBIX/RETINA U-NET
+# Compute average in the prediction, improve results but require more patches to be predicted
+# if true, the predicted vessel probability for each pixel is computed by averaging the predicted probability
+# over multiple overlapping patches covering the same pixel [structured prediction?]
+average_mode = True 
+# Only if average_mode==True. Stride for patch extraction, lower value require more patches to be predicted
+# The stride along the height for the overlapping patches, smaller stride gives higher number of patches.
+stride_height = 5
+stride_width = 5
+# if running with nohup
+nohup = False
