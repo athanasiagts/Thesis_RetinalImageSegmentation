@@ -1,0 +1,36 @@
+[data paths]
+path_local = ../../data/DRIVE_training_testing/
+path_data = ../../data/DRIVE/
+train_imgs_original = init_img_train.hdf5
+train_groundTruth = init_gtruth_train.hdf5
+train_border_masks = init_masks_train.hdf5
+test_imgs_original = init_img_test.hdf5
+test_groundTruth = init_gtruth_test.hdf5
+test_border_masks = init_masks_test.hdf5
+
+
+[experiment name]
+name = sine_net
+
+
+[data attributes]
+# Dimensions of the patches extracted from the full images
+patch_height = 448
+patch_width = 448
+
+
+[training settings]
+# Number of training epochs
+N_epochs = 10
+batch_size = 5
+# if running with nohup: the standard output during the training is redirected and saved in a log file
+nohup = True
+
+
+[testing settings]
+# Choose the model to test: [best==epoch with min loss], [last==last epoch]
+best_last = best
+# number of full images for the test (max 20)
+full_images_to_test = 1
+# How many original-groundTruth-prediction images are visualized in each image
+N_group_visual = 1
